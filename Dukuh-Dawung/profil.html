@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padukuhan Dawung - Profil</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* =============================================
+           RESET & BASE
+        ============================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a2b;
+            --primary-light: #2d5a3d;
+            --secondary: #f5c842;
+            --secondary-light: #f7d95a;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-gray: #555555;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* =============================================
+           NAVBAR
+        ============================================= */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo a {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo i {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.3rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* =============================================
+           PAGE TITLE
+        ============================================= */
+        .page-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 2rem 0 0.5rem;
+        }
+
+        .page-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* =============================================
+           PROFIL CARD
+        ============================================= */
+        .profil-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .profil-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .profil-card h2 i {
+            color: var(--secondary);
+        }
+
+        .profil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .info-list .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-list .info-row .label {
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        .info-list .info-row .value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .misi-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .misi-list li i {
+            color: var(--secondary);
+            margin-top: 0.2rem;
+        }
+
+        .struktur-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .struktur-item h3 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .struktur-item .nama {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-item .label {
+            font-weight: 500;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .info-item .value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* =============================================
+           TABLE
+        ============================================= */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .data-table thead {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem 2rem 1rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col h3,
+        .footer-col h4 {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col h3 i {
+            color: var(--secondary);
+        }
+
+        .footer-col p,
+        .footer-col li {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-col ul li i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 1rem 0;
+                gap: 0.3rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.7rem 1rem;
+                width: 100%;
+                font-size: 0.95rem;
+            }
+
+            .profil-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .profil-card {
+                padding: 1rem;
+            }
+
+            .profil-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .data-table {
+                font-size: 0.8rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.4rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================================
+    NAVBAR
+    ========================================== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-leaf"></i> <span>Padukuhan</span> Dawung
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="profil.html" class="active"><i class="fas fa-info-circle"></i> Profil</a></li>
+                <li><a href="kondisi.html"><i class="fas fa-map"></i> Kondisi</a></li>
+                <li><a href="sarana.html"><i class="fas fa-building"></i> Sarana</a></li>
+                <li><a href="kegiatan.html"><i class="fas fa-calendar-alt"></i> Kegiatan</a></li>
+                <li><a href="organisasi.html"><i class="fas fa-users"></i> Organisasi</a></li>
+                <li><a href="potensi.html"><i class="fas fa-lightbulb"></i> Potensi</a></li>
+                <li><a href="permasalahan.html"><i class="fas fa-exclamation-triangle"></i> Masalah</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+    MAIN CONTENT
+    ========================================== -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Profil Umum Padukuhan Dawung</h1>
+
+            <div class="profil-grid">
+                <!-- Informasi Dasar -->
+                <div class="profil-card">
+                    <h2><i class="fas fa-info-circle"></i> Informasi Dasar</h2>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span class="label">Nama Padukuhan</span>
+                            <span class="value">Padukuhan Dawung</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Kelurahan</span>
+                            <span class="value">Serut</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Kapanewon</span>
+                            <span class="value">Gedangsari</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Kabupaten</span>
+                            <span class="value">Gunung Kidul</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Provinsi</span>
+                            <span class="value">Daerah Istimewa Yogyakarta</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Kode Pos</span>
+                            <span class="value">55863</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Luas Wilayah</span>
+                            <span class="value">125 Ha</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Jumlah Penduduk</span>
+                            <span class="value">656 Jiwa</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Jumlah KK</span>
+                            <span class="value">244 KK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sejarah -->
+                <div class="profil-card">
+                    <h2><i class="fas fa-history"></i> Sejarah</h2>
+                    <p>Padukuhan Dawung memiliki sejarah panjang sebagai daerah pertanian. Nama "Dawung" berasal dari bahasa Jawa yang berarti "daun" atau "hijau", mencerminkan kesuburan tanahnya. Berdiri sejak tahun 1950, padukuhan ini terus berkembang menjadi pemukiman yang maju dan mandiri.</p>
+                </div>
+            </div>
+
+            <!-- Visi Misi -->
+            <div class="profil-grid">
+                <div class="profil-card">
+                    <h2><i class="fas fa-eye"></i> Visi</h2>
+                    <p>Mewujudkan Padukuhan Dawung yang maju, mandiri, dan sejahtera berbasis pertanian dan budaya.</p>
+                </div>
+                <div class="profil-card">
+                    <h2><i class="fas fa-bullseye"></i> Misi</h2>
+                    <ul class="misi-list">
+                        <li><i class="fas fa-check-circle"></i> Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pelatihan</li>
+                        <li><i class="fas fa-check-circle"></i> Mengembangkan potensi pertanian dan pariwisata desa</li>
+                        <li><i class="fas fa-check-circle"></i> Melestarikan budaya dan kearifan lokal</li>
+                        <li><i class="fas fa-check-circle"></i> Mendorong pertumbuhan UMKM lokal</li>
+                        <li><i class="fas fa-check-circle"></i> Membangun infrastruktur yang memadai</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Batas Wilayah -->
+            <div class="profil-card">
+                <h2><i class="fas fa-map"></i> Batas Wilayah</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Selatan</span>
+                        <span class="value">Desa Terbah</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Timur</span>
+                        <span class="value">Desa Sampang</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Utara</span>
+                        <span class="value">Desa Wangon</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Barat</span>
+                        <span class="value">Desa Gayamharjo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Struktur Pemerintahan -->
+            <div class="profil-card">
+                <h2><i class="fas fa-sitemap"></i> Struktur Pemerintahan</h2>
+                <div class="struktur-grid">
+                    <div class="struktur-item">
+                        <h3>Kepala Dusun</h3>
+                        <p class="nama">Bapak Giyana</p>
+                    </div>
+                    <div class="struktur-item">
+                        <h3>Ketua RW</h3>
+                        <p><strong>RW 03:</strong> Bapak Sumardi</p>
+                    </div>
+                    <div class="struktur-item">
+                        <h3>Ketua RT</h3>
+                        <p><strong>RT 12:</strong> Bapak Samino</p>
+                        <p><strong>RT 13:</strong> Bapak Marwanto</p>
+                        <p><strong>RT 14:</strong> Bapak Kamari</p>
+                        <p><strong>RT 15:</strong> Bapak Tugimin</p>
+                        <p><strong>RT 16:</strong> Bapak Sagino</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Penduduk Per RT -->
+            <div class="profil-card">
+                <h2><i class="fas fa-users"></i> Data Penduduk Per RT</h2>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>RT</th>
+                                <th>RW</th>
+                                <th>Ketua RT</th>
+                                <th>KK</th>
+                                <th>Laki-laki</th>
+                                <th>Perempuan</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>RT 12</strong></td>
+                                <td>RW 03</td>
+                                <td>Bapak Samino</td>
+                                <td>42</td>
+                                <td>54</td>
+                                <td>51</td>
+                                <td><strong>105</strong></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>RT 13</strong></td>
+                                <td>RW 03</td>
+                                <td>Bapak Marwanto</td>
+                                <td>43</td>
+                                <td>57</td>
+                                <td>56</td>
+                                <td><strong>113</strong></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>RT 14</strong></td>
+                                <td>RW 03</td>
+                                <td>Bapak Kamari</td>
+                                <td>49</td>
+                                <td>66</td>
+                                <td>73</td>
+                                <td><strong>139</strong></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>RT 15</strong></td>
+                                <td>RW 03</td>
+                                <td>Bapak Tugimin</td>
+                                <td>66</td>
+                                <td>86</td>
+                                <td>80</td>
+                                <td><strong>166</strong></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><strong>RT 16</strong></td>
+                                <td>RW 03</td>
+                                <td>Bapak Sagino</td>
+                                <td>44</td>
+                                <td>67</td>
+                                <td>64</td>
+                                <td><strong>131</strong></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">Total</th>
+                                <th>244</th>
+                                <th colspan="2">656 Jiwa</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-leaf"></i> Padukuhan Dawung</h3>
+                    <p>Kelurahan Serut, Kapanewon Gedangsari, Kabupaten Gunung Kidul</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="profil.html"><i class="fas fa-chevron-right"></i> Profil</a></li>
+                        <li><a href="kondisi.html"><i class="fas fa-chevron-right"></i> Kondisi</a></li>
+                        <li><a href="sarana.html"><i class="fas fa-chevron-right"></i> Sarana</a></li>
+                        <li><a href="kegiatan.html"><i class="fas fa-chevron-right"></i> Kegiatan</a></li>
+                        <li><a href="organisasi.html"><i class="fas fa-chevron-right"></i> Organisasi</a></li>
+                        <li><a href="potensi.html"><i class="fas fa-chevron-right"></i> Potensi</a></li>
+                        <li><a href="umkm.html"><i class="fas fa-chevron-right"></i> UMKM</a></li>
+                        <li><a href="data_penduduk.html"><i class="fas fa-chevron-right"></i> Data Penduduk</a></li>
+                        <li><a href="permasalahan.html"><i class="fas fa-chevron-right"></i> Masalah</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@padukuhandawung.id</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Serut, Gedangsari, Gunung Kidul</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Padukuhan Dawung. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+    JAVASCRIPT
+    ========================================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.getElementById("hamburgerBtn");
+            const navLinks = document.getElementById("navLinks");
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener("click", function() {
+                    navLinks.classList.toggle("open");
+                    hamburger.classList.toggle("active");
+                });
+
+                document.addEventListener("click", function(e) {
+                    if (!e.target.closest(".navbar")) {
+                        if (navLinks.classList.contains("open")) {
+                            navLinks.classList.remove("open");
+                            hamburger.classList.remove("active");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

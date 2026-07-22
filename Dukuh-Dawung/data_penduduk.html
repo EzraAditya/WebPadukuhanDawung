@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padukuhan Dawung - Data Penduduk</title>
+
+    <!-- CSS EKSTERNAL -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Data Konfigurasi -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* Tambahan CSS untuk data section */
+        .data-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .data-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .data-section h2 i {
+            color: var(--secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-item .label {
+            font-weight: 500;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .info-item .value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .catatan-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f7ff;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .catatan-box i {
+            color: #3498db;
+            margin-right: 0.5rem;
+        }
+
+        .catatan-box p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .data-table tfoot th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .data-section {
+                padding: 1rem;
+            }
+            .data-section h2 {
+                font-size: 1.1rem;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================================
+    NAVBAR
+    ========================================== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-leaf"></i> <span>Padukuhan</span> Dawung
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="profil.html"><i class="fas fa-info-circle"></i> Profil</a></li>
+                <li><a href="kondisi.html"><i class="fas fa-map"></i> Kondisi</a></li>
+                <li><a href="sarana.html"><i class="fas fa-building"></i> Sarana</a></li>
+                <li><a href="kegiatan.html"><i class="fas fa-calendar-alt"></i> Kegiatan</a></li>
+                <li><a href="organisasi.html"><i class="fas fa-users"></i> Organisasi</a></li>
+                <li><a href="potensi.html"><i class="fas fa-lightbulb"></i> Potensi</a></li>
+                <li><a href="umkm.html"><i class="fas fa-store"></i> UMKM</a></li>
+                <li><a href="data_penduduk.html" class="active"><i class="fas fa-users"></i> Data Penduduk</a></li>
+                <li><a href="permasalahan.html"><i class="fas fa-exclamation-triangle"></i> Masalah</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+    MAIN CONTENT
+    ========================================== -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Data Penduduk Padukuhan Dawung</h1>
+
+            <!-- Ringkasan -->
+            <div class="stats-container" style="margin-bottom: 2rem;" id="statsRingkasan">
+                <!-- Akan diisi oleh JavaScript -->
+            </div>
+
+            <!-- Data Per RT -->
+            <section class="data-section">
+                <h2><i class="fas fa-route"></i> Data Penduduk Per RT</h2>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>RT</th>
+                                <th>RW</th>
+                                <th>Ketua RT</th>
+                                <th>KK</th>
+                                <th>Laki-laki</th>
+                                <th>Perempuan</th>
+                                <th>Total</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendudukTableBody">
+                            <!-- Akan diisi oleh JavaScript -->
+                        </tbody>
+                        <tfoot id="pendudukTableFooter">
+                            <!-- Akan diisi oleh JavaScript -->
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="catatan-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p><strong>Catatan:</strong> Data penduduk RT 13 dan RT 16 masih dalam proses pendataan. Total penduduk dihitung dari data yang tersedia.</p>
+                </div>
+            </section>
+
+            <!-- Data Perangkat Desa -->
+            <section class="data-section">
+                <h2><i class="fas fa-user-tie"></i> Perangkat Padukuhan</h2>
+                <div class="info-grid" id="perangkatGrid">
+                    <!-- Akan diisi oleh JavaScript -->
+                </div>
+            </section>
+
+            <!-- Batas Wilayah -->
+            <section class="data-section">
+                <h2><i class="fas fa-map"></i> Batas Wilayah</h2>
+                <div class="info-grid" id="batasWilayahGrid">
+                    <!-- Akan diisi oleh JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-leaf"></i> Padukuhan Dawung</h3>
+                    <p>Kelurahan Serut, Kapanewon Gedangsari, Kabupaten Gunung Kidul</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="profil.html"><i class="fas fa-chevron-right"></i> Profil</a></li>
+                        <li><a href="kondisi.html"><i class="fas fa-chevron-right"></i> Kondisi</a></li>
+                        <li><a href="sarana.html"><i class="fas fa-chevron-right"></i> Sarana</a></li>
+                        <li><a href="kegiatan.html"><i class="fas fa-chevron-right"></i> Kegiatan</a></li>
+                        <li><a href="organisasi.html"><i class="fas fa-chevron-right"></i> Organisasi</a></li>
+                        <li><a href="potensi.html"><i class="fas fa-chevron-right"></i> Potensi</a></li>
+                        <li><a href="umkm.html"><i class="fas fa-chevron-right"></i> UMKM</a></li>
+                        <li><a href="data_penduduk.html"><i class="fas fa-chevron-right"></i> Data Penduduk</a></li>
+                        <li><a href="permasalahan.html"><i class="fas fa-chevron-right"></i> Masalah</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@padukuhandawung.id</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Serut, Gedangsari, Gunung Kidul</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Padukuhan Dawung. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+    JAVASCRIPT - RENDER DATA PENDUDUK
+    ========================================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ==========================================
+            // HAMBURGER MENU
+            // ==========================================
+            const hamburger = document.getElementById("hamburgerBtn");
+            const navLinks = document.getElementById("navLinks");
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener("click", function() {
+                    navLinks.classList.toggle("open");
+                    hamburger.classList.toggle("active");
+                });
+
+                document.addEventListener("click", function(e) {
+                    if (!e.target.closest(".navbar")) {
+                        if (navLinks.classList.contains("open")) {
+                            navLinks.classList.remove("open");
+                            hamburger.classList.remove("active");
+                        }
+                    }
+                });
+            }
+
+            // ==========================================
+            // RENDER STATS RINGKASAN
+            // ==========================================
+            function renderStatsRingkasan() {
+                const container = document.getElementById("statsRingkasan");
+                const totalJiwa = dataPenduduk.total_jiwa;
+                const totalKK = dataPenduduk.total_kk;
+                const totalRT = dataPenduduk.rt.length;
+
+                const html = `
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>${totalJiwa.toLocaleString()}</h3>
+                        <p>Total Penduduk</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-home"></i>
+                        <h3>${totalKK.toLocaleString()}</h3>
+                        <p>Total KK</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-route"></i>
+                        <h3>${totalRT}</h3>
+                        <p>Rukun Tetangga</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>1</h3>
+                        <p>RW</p>
+                    </div>
+                `;
+                container.innerHTML = html;
+            }
+
+            // ==========================================
+            // RENDER DATA PENDUDUK PER RT
+            // ==========================================
+            function renderPendudukTable() {
+                const tbody = document.getElementById("pendudukTableBody");
+                const tfoot = document.getElementById("pendudukTableFooter");
+
+                // Body
+                let bodyHtml = "";
+                dataPenduduk.rt.forEach((rt, index) => {
+                    // Keterangan (jika ada di data, kosongkan jika tidak)
+                    const keterangan = rt.keterangan || "";
+                    bodyHtml += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td><strong>${rt.nama}</strong></td>
+                            <td>${rt.rw}</td>
+                            <td>${rt.ketua}</td>
+                            <td>${rt.kk.toLocaleString()}</td>
+                            <td>${rt.laki.toLocaleString()}</td>
+                            <td>${rt.perempuan.toLocaleString()}</td>
+                            <td><strong>${rt.total.toLocaleString()}</strong></td>
+                            <td>${keterangan}</td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = bodyHtml;
+
+                // Footer
+                tfoot.innerHTML = `
+                    <tr>
+                        <th colspan="4">Total</th>
+                        <th>${dataPenduduk.total_kk.toLocaleString()}</th>
+                        <th colspan="2">${dataPenduduk.total_jiwa.toLocaleString()} Jiwa</th>
+                    </tr>
+                `;
+            }
+
+            // ==========================================
+            // RENDER PERANGKAT DESA
+            // ==========================================
+            function renderPerangkat() {
+                const container = document.getElementById("perangkatGrid");
+
+                let html = `
+                    <div class="info-item">
+                        <span class="label">Kepala Dusun</span>
+                        <span class="value">${perangkatDesa.kepala_dusun}</span>
+                    </div>
+                `;
+
+                // RW
+                for (const [rw, nama] of Object.entries(perangkatDesa.rw)) {
+                    html += `
+                        <div class="info-item">
+                            <span class="label">Ketua ${rw}</span>
+                            <span class="value">${nama}</span>
+                        </div>
+                    `;
+                }
+
+                // RT
+                for (const [rt, nama] of Object.entries(perangkatDesa.rt)) {
+                    html += `
+                        <div class="info-item">
+                            <span class="label">Ketua ${rt}</span>
+                            <span class="value">${nama}</span>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+            }
+
+            // ==========================================
+            // RENDER BATAS WILAYAH
+            // ==========================================
+            function renderBatasWilayah() {
+                const container = document.getElementById("batasWilayahGrid");
+                const batas = profilUmum.batas_wilayah;
+                const items = [
+                    { label: "Selatan", value: batas.selatan },
+                    { label: "Timur", value: batas.timur },
+                    { label: "Utara", value: batas.utara },
+                    { label: "Barat", value: batas.barat }
+                ];
+
+                let html = "";
+                items.forEach(item => {
+                    html += `
+                        <div class="info-item">
+                            <span class="label">${item.label}</span>
+                            <span class="value">${item.value}</span>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            }
+
+            // ==========================================
+            // RENDER SEMUA
+            // ==========================================
+            renderStatsRingkasan();
+            renderPendudukTable();
+            renderPerangkat();
+            renderBatasWilayah();
+        });
+    </script>
+</body>
+</html>
