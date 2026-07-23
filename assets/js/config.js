@@ -480,7 +480,5 @@ const galeri = [
     { src: 'pemandangan.jpeg', caption: 'Pemandangan Sawah Padukuhan Dawung' },
     { src: 'gotong-royong2.jpeg', caption: 'Kegiatan Gotong Royong Warga' },
     { src: 'dangdut.jpeg', caption: 'Kegiatan Masyarakat' },
-    { src: 'posyandu2.jpeg', caption: 'Posyandu' },
-    { src: 'umkm.jpg', caption: 'Produk UMKM Dawung' },
-    { src: 'masjid.jpg', caption: 'Masjid di RT 14 dan RT 16' }
+    { src: 'posyandu2.jpeg', caption: 'Posyandu' }
 ];
