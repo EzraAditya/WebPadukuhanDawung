@@ -59,9 +59,9 @@ const dataPenduduk = {
     rt: [
         {
             nama: 'RT 12',
-            kk: 42,
-            laki: 54,
-            perempuan: 51,
+            kk: 45,
+            laki: 58,
+            perempuan: 62,
             total: 105,
             rw: 'RW 03',
             ketua: 'Bapak Samino'
